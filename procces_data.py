@@ -2,7 +2,7 @@ from concurrent.futures import ThreadPoolExecutor
 import os
 
 # Ruta de los archivos
-ruta_base = "c:/Users/jean2/Documents/Python_Proyects/data/"
+ruta_base = "/home/raiku/Documentos/analizador-de-tendencias/data"
 
 # Función para procesar un solo archivo
 def procesar_archivo(ruta_archivo):
@@ -27,10 +27,37 @@ def procesar_data(directorio=ruta_base):
             resultados = list(executor.map(procesar_archivo, rutas_completas))
         for contenido in resultados:
             if contenido is not None:
-                contenido_procesado.append(contenido)
+                contenido_lower = contenido.lower()
+                contenido_procesado.append(contenido_lower)
         return contenido_procesado
     except FileNotFoundError:
         print(f"Directorio no encontrado: {directorio}")
 
-# Ejecutar el procesamiento concurrente
-print(procesar_data())
+# Buscar palabras repetidas en procesado de datos
+def buscar_tendencia(contenido_procesado):
+    palabras_repetidas = {}
+    for contenido in contenido_procesado:
+        palabras = contenido.split()
+        for palabra in palabras:
+            if palabra in palabras_repetidas:
+                palabras_repetidas[palabra] += 1
+            else:
+                palabras_repetidas[palabra] = 1
+
+    if not palabras_repetidas:
+        return 0
+    palabra_mas_repetida = max(palabras_repetidas, key=palabras_repetidas.get)
+    palabra_prohibida = ""
+    if palabra_mas_repetida == palabra_prohibida:
+        return print("Palabra prohibida")
+    else:
+        return palabra_mas_repetida
+
+# Function volver la data un .bat
+def transform_data_to_dat(palabra_mas_repetida):
+    contenido_bat = []
+    contenido_bat = "".join(f"Palabra en tendencia: {palabra_mas_repetida}")
+    nombre_archivo = 'estado.dat'
+    with open(nombre_archivo, 'w') as archivo:
+        archivo.write((contenido_bat))
+        return print(f"Archivo {nombre_archivo} creado exitosamente.")
