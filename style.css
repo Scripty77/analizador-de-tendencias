@@ -1,53 +1,47 @@
-/* Paleta de colores inspirada en la Macintosh de los 80s */
-@define-color mac-beige #E1D3C5;
-@define-color mac-gray #C0C0C0;
-@define-color mac-dark-gray #404040;
-@define-color mac-green #32CD32; /* Un verde vibrante para destacar */
-@define-color mac-teclas #FFFFFF; /* Blanco para las teclas */
-
 window {
-    background-color: @mac-beige;
+    background-color: #E1D3C5;
 }
 
 .main-box {
-    background-color: @mac-gray;
+    background-color: #C0C0C0;
     padding: 15px;
-    border: 4px solid @mac-dark-gray; /* Borde sólido */
-    box-shadow: 2px 2px 0 @mac-dark-gray; /* Sombra para efecto 3D */
+    border: 4px solid #333333;
+    box-shadow: 2px 2px 0 #333333; 
     margin: 13px;
 }
 
-/* Estilo para los títulos de las secciones */
 .section-title {
     font-family: "Monospace", "Courier New", monospace;
     font-size: 24px;
     font-weight: bold;
-    color: @mac-dark-gray;
+    color: #333333;
     margin-bottom: 10px;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 button {
-    background-color: @mac-gray;
-    color: @mac-teclas;
+    background-color: #C0C0C0;
+    color: #091e3a;
     font-family: "Monospace", "Courier New", monospace;
     font-weight: bold;
     border-radius: 0;
-    border: 2px solid @mac-dark-gray;
-    box-shadow: 2px 2px 0 @mac-dark-gray;
+    border: 2px solid #333333;
+    box-shadow: 2px 2px 0 #333333;
     padding: 5px;
 }
 
-top-10-list {
-    font-family: "Monospace", "Courier New", monospace;
+.top-10-list {
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-weight: bold;
-    font-size: 36px;
-    color: #000;
+    font-size: 28px;
+    color: #2f4f4f;
+    align-items: center;
 }
+
 
 #frequency-result {
     font-family: "Monospace", "Courier New", monospace;
     font-weight: bold;
     font-size: 25px;
-    color: #000; /* Aplicamos el color de las teclas */
+    color: #090438;
 }

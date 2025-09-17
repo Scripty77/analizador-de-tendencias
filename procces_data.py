@@ -1,10 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
 import os
 
-# Ruta de los archivos
-ruta_base = "/home/raiku/Documentos/analizador-de-tendencias/data"
+ruta_base = r"C:\Users\raiku\Documents\analizador-de-tendencias\data"
 
-# Función para procesar un solo archivo
 def procesar_archivo(ruta_archivo):
     try:
         with open(ruta_archivo, "r", encoding="utf-8") as archivo:
@@ -13,13 +11,12 @@ def procesar_archivo(ruta_archivo):
     except FileNotFoundError:
         return None
 
-# Función para procesar todos los archivos con hilos
 def procesar_data(directorio=ruta_base):
     contenido_procesado = []
     try:
-        # Obtener la lista de nombres de archivos
+        #lista de nombres de archivos
         nombres_archivos = os.listdir(directorio)
-        # Generar las rutas completas para cada archivo
+        #rutas completas para cada archivo
         rutas_completas = [os.path.join(directorio, nombre) for nombre in nombres_archivos if os.path.isfile(os.path.join(directorio, nombre))]
 
         # Uso del ThreadPoolExecutor para ejecutar los hilos
@@ -33,7 +30,6 @@ def procesar_data(directorio=ruta_base):
     except FileNotFoundError:
         print(f"Directorio no encontrado: {directorio}")
 
-# Buscar palabras repetidas en procesado de datos
 def buscar_tendencia(contenido_procesado):
     palabras_repetidas = {}
     for contenido in contenido_procesado:
@@ -47,14 +43,13 @@ def buscar_tendencia(contenido_procesado):
     if not palabras_repetidas:
         return 0
     palabra_mas_repetida = max(palabras_repetidas, key=palabras_repetidas.get)
-    palabra_prohibida = ""
+    palabra_prohibida = "GITHUB"
     if palabra_mas_repetida == palabra_prohibida:
-        return print("Palabra prohibida")
+        return 0
     else:
         return palabra_mas_repetida
 
-# Function volver la data un .bat
-def transform_data_to_dat(palabra_mas_repetida):
+def transformar_data_a_dat(palabra_mas_repetida):
     contenido_bat = []
     contenido_bat = "".join(f"Palabra en tendencia: {palabra_mas_repetida}")
     nombre_archivo = 'estado.dat'
